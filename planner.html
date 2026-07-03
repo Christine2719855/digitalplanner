@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>✨ Digital Planner ✨</title>
+    <link rel="stylesheet" href="planner.css">
+</head>
+
+<body class="font-default bg-solid">
+
+<!-- Notification bar -->
+<div id="notification-bar" class="notification-bar" style="transform: translateY(-100%);">
+    <span class="notification-icon">🔔</span>
+    <span id="notification-text"></span>
+</div>
+
+<!-- Sidebar Tab -->
+<div id="sidebar-tab" class="sidebar-tab">☰</div>
+
+<div class="app-wrapper">
+
+    <!-- Sidebar -->
+    <div class="sidebar collapsed" id="sidebar">
+
+        <!-- Themes -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">Themes</div>
+            <div class="sidebar-options">
+                <button class="theme-btn" data-theme="pastel">Pastel</button>
+                <button class="theme-btn" data-theme="yellow">Yellow</button>
+                <button class="theme-btn" data-theme="pink">Pink</button>
+                <button class="theme-btn" data-theme="blue">Blue</button>
+                <button class="theme-btn" data-theme="green">Green</button>
+                <button class="theme-btn" data-theme="lightpastel">Light Mode</button>
+                <button class="theme-btn" data-theme="dark">Dark Mode</button>
+                <button class="theme-btn" data-theme="darkblue">Dark Blue</button>
+                <button class="theme-btn" data-theme="steel">Grey Steel</button>
+            </div>
+        </div>
+
+        <!-- Calendar Style -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">Calendar Style</div>
+            <select id="calendar-style">
+                <option value="rounded">Rounded</option>
+                <option value="square">Square</option>
+                <option value="minimal">Minimal</option>
+                <option value="cute">Cute (icons)</option>
+            </select>
+        </div>
+
+        <!-- Event Icons -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">Event Icons</div>
+            <select id="event-icons">
+                <option value="on">On</option>
+                <option value="off">Off</option>
+            </select>
+        </div>
+
+        <!-- Font Style -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">Font Style</div>
+            <select id="font-style">
+                <option value="default">Default</option>
+                <option value="cursive">Cursive</option>
+                <option value="modern">Modern (Inter)</option>
+                <option value="bold">Bold</option>
+            </select>
+        </div>
+
+        <!-- Background Style -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">Background</div>
+            <select id="background-style">
+                <option value="solid">Solid</option>
+                <option value="gradient">Gradient</option>
+                <option value="pattern">Stripes</option>
+                <option value="waves">Waves</option>
+                <option value="dots">Polka Dots</option>
+                <option value="notebook">Notebook Paper</option>
+                <option value="glass">Glass Blur</option>
+                <option value="grid">Grid</option>
+                <option value="diagonal">Diagonal Lines</option>
+                <option value="image">Image Upload</option>
+            </select>
+
+            <input type="file" id="bg-image-upload" accept="image/*" style="display:none;">
+        </div>
+
+        <!-- Urgent -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">Urgent</div>
+            <button id="urgent-btn" class="theme-btn">🔔 Urgent</button>
+        </div>
+
+        <!-- Notification Settings -->
+        <div class="sidebar-section">
+            <div class="sidebar-title">Notification Settings</div>
+            <label><input type="checkbox" id="notify-3"> 3 days before</label><br>
+            <label><input type="checkbox" id="notify-2"> 2 days before</label><br>
+            <label><input type="checkbox" id="notify-1"> 1 day before</label><br>
+            <label><input type="checkbox" id="notify-0"> Day of event</label>
+        </div>
+
+        <!-- Reset Theme -->
+        <div class="sidebar-section">
+            <button id="reset-theme" class="reset-btn">Reset Theme</button>
+        </div>
+
+    </div>
+
+    <!-- Main Planner -->
+    <div class="planner-container">
+        <h1>✨ Digital Planner ✨</h1>
+
+        <div class="planner-layout">
+
+            <!-- Calendar -->
+            <div class="calendar">
+                <div class="month-controls">
+                    <button id="prev-month">←</button>
+                    <button id="next-month">→</button>
+                </div>
+
+                <h2 id="month-title">January 2027</h2>
+
+                <div class="weekday-row">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+
+                <div id="calendar-grid" class="calendar-grid"></div>
+            </div>
+
+            <!-- Add Event -->
+            <div class="event-panel">
+                <h2>Add Event</h2>
+
+                <label>Title</label>
+                <input id="event-title" placeholder="e.g. Math exam">
+
+                <label>Date</label>
+                <input id="event-date" type="date">
+
+                <label>Category</label>
+                <select id="event-category">
+                    <option>Birthday</option>
+                    <option>Assignment</option>
+                    <option>Exam</option>
+                    <option>Important Date</option>
+                    <option>Other</option>
+                </select>
+
+                <button id="save-event">Save Event</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit Popup -->
+<div id="edit-popup" class="edit-box" style="display:none;">
+    <h3>Edit Event</h3>
+
+    <label>Title</label>
+    <input id="edit-title">
+
+    <label>Date</label>
+    <input id="edit-date" type="date">
+
+    <label>Category</label>
+    <select id="edit-category">
+        <option>Birthday</option>
+        <option>Assignment</option>
+        <option>Exam</option>
+        <option>Important Date</option>
+        <option>Other</option>
+    </select>
+
+    <div class="edit-buttons">
+        <button id="save-edit">Save</button>
+        <button id="cancel-edit">Cancel</button>
+    </div>
+</div>
+
+<!-- Action Menu -->
+<div id="action-menu" class="action-menu" style="display:none;">
+    <button id="menu-edit">Edit</button>
+    <button id="menu-delete">Delete</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
